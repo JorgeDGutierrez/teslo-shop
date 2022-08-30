@@ -1,4 +1,8 @@
 import { Typography, Grid, TextField, FormControl, InputLabel, Select, MenuItem, Box, Button } from "@mui/material";
+<<<<<<< HEAD
+=======
+import React from "react";
+>>>>>>> 7c06079 (resumen de la orden 2)
 import { ShopLayout } from "../../components/layouts"
 
 
