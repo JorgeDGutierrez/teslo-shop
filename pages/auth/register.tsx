@@ -3,15 +3,18 @@ import { Box, Button, Grid, Link, TextField, Typography } from '@mui/material';
 import { AuthLayout } from '../../components/layouts'
 
 
-const LoginPage = () => {
+const RegisterPage = () => {
     return (
         <AuthLayout title={'Ingresar'}>
             <Box sx={{ width: 350, padding: '250px 20px' }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
-                        <Typography variant='h1' component="h1">Iniciar Sesión</Typography>
+                        <Typography variant='h1' component="h1">Crear cuenta</Typography>
                     </Grid>
 
+                    <Grid item xs={12}>
+                        <TextField label="Nombre completo" variant="filled" fullWidth />
+                    </Grid>
                     <Grid item xs={12}>
                         <TextField label="Correo" variant="filled" fullWidth />
                     </Grid>
@@ -26,9 +29,9 @@ const LoginPage = () => {
                     </Grid>
 
                     <Grid item xs={12} display='flex' justifyContent='end'>
-                        <NextLink href="/auth/register" passHref>
+                        <NextLink href="/auth/login" passHref>
                             <Link underline='always'>
-                                ¿No tienes cuenta?
+                                ¿Ya tienes cuenta?
                             </Link>
                         </NextLink>
                     </Grid>
@@ -37,4 +40,4 @@ const LoginPage = () => {
         </AuthLayout>
     )
 }
-export default LoginPage;
+export default RegisterPage;
