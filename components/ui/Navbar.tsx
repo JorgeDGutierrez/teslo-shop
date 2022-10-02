@@ -1,3 +1,4 @@
+import { Router, useRouter } from 'next/router';
 import NextLink from 'next/link';
 
 import { AppBar, Badge, Box, Button, IconButton, Link, Toolbar, Typography } from "@mui/material"
@@ -5,6 +6,14 @@ import { SearchOutlined, ShoppingCartOutlined } from '@mui/icons-material';
 
 
 export const Navbar = () => {
+
+  //cambiar de primary a info en los botones
+  const router = useRouter();
+
+
+  const activeLink = (href: string) => href === router.asPath ? 'primary' : 'info';
+
+
   return (
     <AppBar>
       <Toolbar>
@@ -20,17 +29,17 @@ export const Navbar = () => {
         <Box sx={{ display: { xs: 'none', sm: 'block', } }} >
           <NextLink href='/category/men' passHref>
             <Link>
-              <Button>Hombres</Button>
+              <Button variant='contained' color={activeLink('/category/men')}>Hombres</Button>
             </Link>
           </NextLink>
           <NextLink href='/category/women' passHref>
             <Link>
-              <Button>Mujeres</Button>
+              <Button color={activeLink('/category/women')}>Mujeres</Button>
             </Link>
           </NextLink>
-          <NextLink href='/category/Kid' passHref>
+          <NextLink href='/category/kid' passHref>
             <Link>
-              <Button>Niños</Button>
+              <Button color={activeLink('/category/kid')}>Niños</Button>
             </Link>
           </NextLink>
         </Box>
@@ -61,3 +70,7 @@ export const Navbar = () => {
     </AppBar>
   )
 }
+function activeLink(arg0: string) {
+  throw new Error('Function not implemented.');
+}
+
