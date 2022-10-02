@@ -1,15 +1,19 @@
+import { useContext } from 'react';
 import { Router, useRouter } from 'next/router';
 import NextLink from 'next/link';
 
 import { AppBar, Badge, Box, Button, IconButton, Link, Toolbar, Typography } from "@mui/material"
 import { SearchOutlined, ShoppingCartOutlined } from '@mui/icons-material';
+import { UIContext } from '../../context';
 
 
 export const Navbar = () => {
 
+
+
   //cambiar de primary a info en los botones
   const router = useRouter();
-
+  const { toggleSideMenu } = useContext(UIContext);
 
   const activeLink = (href: string) => href === router.asPath ? 'primary' : 'info';
 
@@ -62,7 +66,7 @@ export const Navbar = () => {
           </Link>
         </NextLink>
 
-        <Button>
+        <Button onClick={toggleSideMenu} >
           Menu
         </Button>
 
