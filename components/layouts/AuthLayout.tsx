@@ -1,11 +1,11 @@
-import { Box } from "@mui/material"
-import Head from "next/head"
-import { FC } from "react"
+import { FC } from 'react';
+import Head from 'next/head';
+import { Box } from '@mui/material';
 
 interface Props {
-    title: string
+    title: string;
+    children: JSX.Element;
 }
-
 
 export const AuthLayout: FC<Props> = ({ children, title }) => {
     return (
@@ -15,7 +15,7 @@ export const AuthLayout: FC<Props> = ({ children, title }) => {
             </Head>
 
             <main>
-                <Box display='flex' justifyContent='center' height='calc(100vh - 200px)' >
+                <Box display='flex' justifyContent='center' alignItems='center' height="calc(100vh - 200px)">
                     {children}
                 </Box>
             </main>
