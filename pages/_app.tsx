@@ -7,7 +7,7 @@ import { lightTheme } from '../themes';
 import { UIProvider } from '../context';
 import { ReactElement } from 'react';
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+function MyApp({ Component, pageProps }: AppProps): ReactElement {
   return (
     <SWRConfig
       value={{
