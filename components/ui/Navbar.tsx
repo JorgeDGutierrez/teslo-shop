@@ -4,7 +4,7 @@ import NextLink from 'next/link';
 
 import { AppBar, Badge, Box, Button, IconButton, Link, Toolbar, Typography } from "@mui/material"
 import { SearchOutlined, ShoppingCartOutlined } from '@mui/icons-material';
-import { UIContext } from '../../context';
+import { UiContext } from '../../context';
 
 
 export const Navbar = () => {
@@ -12,10 +12,10 @@ export const Navbar = () => {
 
 
   //cambiar de primary a info en los botones
-  const router = useRouter();
-  const { toggleSideMenu } = useContext(UIContext);
+  const { asPath } = useRouter();
+  const { toggleSideMenu } = useContext(UiContext);
 
-  const activeLink = (href: string) => href === router.asPath ? 'primary' : 'info';
+  const activeLink = (href: string) => href === asPath ? 'primary' : 'info';
 
 
   return (
