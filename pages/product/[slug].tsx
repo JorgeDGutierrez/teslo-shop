@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { NextPage, GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 import { Box, Button, Chip, Grid, Typography } from '@mui/material';
 
@@ -9,6 +9,8 @@ import { ItemCounter } from '../../components/ui/ItemCounter';
 
 import { dbProducts } from '../../database';
 import { ICartProduct, IProduct, ISize } from '../../interfaces';
+import { useRouter } from 'next/router';
+import { CartContext } from '../../context';
 
 
 interface Props {
@@ -18,6 +20,9 @@ interface Props {
 
 
 const ProductPage: NextPage<Props> = ({ product }) => {
+
+  const router = useRouter();
+  const { addProductToCart } = useContext(CartContext);
 
   const [tempCartProduct, setTempCartProduct] = useState<ICartProduct>({
     _id: product._id,
@@ -41,7 +46,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
     }))
 
   }
-  const onupdatedQuantity = (quantity: number) => {
+  const onUpdatedQuantity = (quantity: number) => {
     console.log('En padre:', quantity);
     setTempCartProduct(currentProduct => ({
 
@@ -53,6 +58,13 @@ const ProductPage: NextPage<Props> = ({ product }) => {
   }
 
   const onAddProduct = () => {
+
+    if (!tempCartProduct.size) { return; }
+
+    //TODO:llamar la accion del context para agreagar el producto al carrito
+    addProductToCart(tempCartProduct);
+
+    router.push('/cart');
 
     console.log('Añadir al carrito:', tempCartProduct);
   }
@@ -83,7 +95,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
               {/* <h1>{product.inStock}</h1> */}
               <ItemCounter
                 currentValue={tempCartProduct.quantity}
-                updatedQuantity={onupdatedQuantity}
+                updatedQuantity={onUpdatedQuantity}
                 maxValue={product.inStock > 20 ? 20 : product.inStock}
               />
               <SizeSelector
